@@ -76,7 +76,7 @@ b. Calculate how much you won or lost in blackjack over the week.
 total_blackjack <- sum(blackjack)
 total_blackjack
 ```
-## 310
+Answer: 310
 
 c. Calculate how much you won or lost in roulette over the week.  
 
@@ -84,7 +84,7 @@ c. Calculate how much you won or lost in roulette over the week.
 total_roulette <- sum(roulette)
 total_roulette
 ```
-## -60
+Answer: -60
 
 d. Build a `total_week` vector to show how much you lost or won on each day over the week. Which days seem lucky or unlucky for you?
 
@@ -92,18 +92,18 @@ d. Build a `total_week` vector to show how much you lost or won on each day over
 total_week <-(blackjack + roulette)
 total_week 
 ```
-## order of luckiest to unluckiest: 
+order of luckiest to unluckiest: 
 order(total_week, decreasing=TRUE)
 
-## friday > monday > wednesday > tuesday > thursday
-## luckiest day = friday, unluckiest day = thursday
+friday > monday > wednesday > tuesday > thursday
+luckiest day = friday, unluckiest day = thursday
 
 e. Should you stick to blackjack or roulette? Write a program that verifies this below.
 
 ```r
 total_blackjack > total_roulette
 ```
-## blackjack winnings greater than roulette winnings, stick to blackjack
+blackjack winnings greater than roulette winnings, stick to blackjack
 
 ## Push your final code to [GitHub](https://github.com/FRS417-DataScienceBiologists)
 Make sure that you push your code into the appropriate folder. Also, be sure that you have check the `keep md` file in the knit preferences.

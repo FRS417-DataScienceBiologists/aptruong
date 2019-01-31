@@ -94,7 +94,7 @@ str(msleep)
 ##  $ brainwt     : num  NA 0.0155 NA 0.00029 0.423 NA NA NA 0.07 0.0982 ...
 ##  $ bodywt      : num  50 0.48 1.35 0.019 600 ...
 ```
-Note: other functions include 'summary()' and 'glimpse()'(which is part of the tidyverse)
+> Note: other functions include 'summary()' and 'glimpse()'(which is part of the tidyverse)
 
 
 ```r

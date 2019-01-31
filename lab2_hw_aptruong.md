@@ -5,7 +5,7 @@ date: "Winter 2019"
 output:
   html_document:
     keep_md: yes
-    theme: spacelab
+    theme: cerulean
 ---
 
 ## Instructions
@@ -306,7 +306,7 @@ msleep %>%
 ## 4 North American Opossum Didelphis  Didelphimorphia        18  
 ## 5 Thick-tailed opposum   Lutreolina Didelphimorphia        19.4
 ```
-
+> five animals sleep at least 18 hours per day: big brown bat, little brown bat, giant armadillo, north american opossum, thick-tailed opposum
 
 ## Push your final code to [GitHub](https://github.com/FRS417-DataScienceBiologists)
 Make sure that you push your code into the appropriate folder. Also, be sure that you have check the `keep md` file in the knit preferences.

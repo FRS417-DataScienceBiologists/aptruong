@@ -112,13 +112,13 @@ fisheries_tidy
 ```
 
 > **Tidy**   
-> `Tidy`data must follow three conventions:     
+> `Tidy`data must follow three conventions:      
 > (1) *each variable has its own column*    
->    + TRUE (new column 'year' fixed previous issue of using variables as columns)
+>     + TRUE (new column 'year' fixed previous issue of using variables as columns)  
 > (2) *each observation has its own row*  
->    + TRUE 
+>     + TRUE   
 > (3) *each value has its own cell*    
->    + TRUE
+>     + TRUE 
 
 
 9. You are a fisheries scientist studying cephalopod catch during 2008-2012. Identify the top five consumers (by country) of cephalopods (don't worry about species for now). Restrict the data frame only to our variables of interest.

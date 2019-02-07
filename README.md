@@ -2,4 +2,4 @@
 
 April Truong's class notes and HW assignnments
 
-## ¯\_(ツ)_/¯
+## ᕕ( ᐛ )ᕗ

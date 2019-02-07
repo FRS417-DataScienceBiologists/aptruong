@@ -276,14 +276,14 @@ fisheries_rename
 
 4. Are these data tidy? Why or why not, and, how do you know?
 
-> **Not tidy** 
-`Tidy` data must follow three conventions:   
-(1) *each variable has its own column*  
-  + FALSE; columns are actually variables (years are not column names, they are variables)
-(2) *each observation has its own row*
-  + TRUE 
-(3) *each value has its own cell*  
-  + TRUE
+> **Not tidy**   
+`Tidy`data must follow three conventions:      
+(1) *each variable has its own column*    
+  + FALSE; columns are actually variables (years are not column names, they are variables)  
+(2) *each observation has its own row*  
+  + TRUE   
+(3) *each value has its own cell*    
+  + TRUE  
 
 
 5. We need to tidy the data using `gather()`. The code below will not run because it is commented (#) out. I have added a bit of code that will prevent you from needing to type in each year from 1950-2012 but you need to complete the remainder `QQQ` and remove the `#`.
@@ -363,13 +363,13 @@ fisheries_tidy
 ## #   year <dbl>, catch <dbl>
 ```
 
-> **Tidy** 
-`Tidy` data must follow three conventions:   
-(1) *each variable has its own column*  
+> **Tidy**   
+`Tidy`data must follow three conventions:     
+(1) *each variable has its own column*    
   + TRUE (new column 'year' fixed previous issue of using variables as columns)
-(2) *each observation has its own row*
+(2) *each observation has its own row*  
   + TRUE 
-(3) *each value has its own cell*  
+(3) *each value has its own cell*    
   + TRUE
 
 
@@ -404,11 +404,11 @@ fisheries_top_consumers
 ## # ... with 3,715 more rows
 ```
 > Top 5 consumer(by country) of cephalopods: 
-1. Peru
-2. China
-3. Viet Nam
-4. Japan
-5. Taiwan province of China
+> 1. Peru
+> 2. China
+> 3. Viet Nam
+> 4. Japan
+> 5. Taiwan province of China
 
 
 10. Let's be more specific. Who consumes the most `Common cuttlefish`? Store this as a new object `cuttle`.

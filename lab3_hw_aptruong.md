@@ -277,13 +277,13 @@ fisheries_rename
 4. Are these data tidy? Why or why not, and, how do you know?
 
 > **Not tidy**   
-`Tidy`data must follow three conventions:      
-(1) *each variable has its own column*    
-  + FALSE; columns are actually variables (years are not column names, they are variables)  
-(2) *each observation has its own row*  
-  + TRUE   
-(3) *each value has its own cell*    
-  + TRUE  
+> `Tidy`data must follow three conventions:      
+> (1) *each variable has its own column*    
+>     + FALSE; columns are actually variables (years are not column names, they are variables)  
+> (2) *each observation has its own row*  
+>     + TRUE   
+> (3) *each value has its own cell*    
+>     + TRUE  
 
 
 5. We need to tidy the data using `gather()`. The code below will not run because it is commented (#) out. I have added a bit of code that will prevent you from needing to type in each year from 1950-2012 but you need to complete the remainder `QQQ` and remove the `#`.
@@ -364,13 +364,13 @@ fisheries_tidy
 ```
 
 > **Tidy**   
-`Tidy`data must follow three conventions:     
-(1) *each variable has its own column*    
-  + TRUE (new column 'year' fixed previous issue of using variables as columns)
-(2) *each observation has its own row*  
-  + TRUE 
-(3) *each value has its own cell*    
-  + TRUE
+> `Tidy`data must follow three conventions:     
+> (1) *each variable has its own column*    
+>    + TRUE (new column 'year' fixed previous issue of using variables as columns)
+> (2) *each observation has its own row*  
+>    + TRUE 
+> (3) *each value has its own cell*    
+>    + TRUE
 
 
 9. You are a fisheries scientist studying cephalopod catch during 2008-2012. Identify the top five consumers (by country) of cephalopods (don't worry about species for now). Restrict the data frame only to our variables of interest.

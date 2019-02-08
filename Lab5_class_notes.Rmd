@@ -1,0 +1,350 @@
+---
+title: "Lab5: Tidy Data 2, Summarize, Dealing with NA's"
+author: "April Truong"
+date: "Winter 2019, February 8"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Lab 4-1: Tidy Data 2 & Summarize
+
+## Lab intro for the day
+- group project: think about kind of data want to use; will have to do short presentation & analysis
+- create new repository and share things through that repository
+
+### HW Review
+> looked at devan's hw
+7. year and catch are numerics, so make R recognize as numbers; also need R to recognize "..." as missing data and treat NAs as blanks
+
+## Resources
+- [dplyr-tidyr tutorial](http://tclavelle.github.io/dplyr-tidyr-tutorial/)
+- [Data wrangling cheatsheet (`dplyr`,`tidyr`)](http://ucsb-bren.github.io/refs/cheatsheets/data-wrangling-cheatsheet.pdf)
+- [Tidyr, R for Data Science](https://r4ds.had.co.nz/tidy-data.html#unite)
+
+## Learning Goals
+*At the end of this exercise, you will be able to:*    
+1. Explain the difference between tidy and messy data.  
+> (1) *each variable has its own column*    
+> (2) *each observation has its own row*  
+> (3) *each value has its own cell*      
+2. Evaluate a dataset as tidy or untidy.  
+3. Use the `spread()` function of tidyr to transform messy data to tidy data. 
+4. Use `summarize()` and `group_by()` to produce statistical summaries of data.
+
+# Tidy Data 2 & Summarize: Review
+
+Load tidyverse
+```{r}
+library(tidyverse)
+```
+
+## Tidyr
+*gather() and spread() convert data between wide and long format*
+*separate() and unite() separates or unites information in columns*
+> remember that gather() and spread() work in key and values; in gather() use == , but spread() don't need it
+
+## gather()
+Recall that we use `gather()` when our column names actually represent variables. A classic example would be that the column names represent observations of a variable.
+```{r}
+?USArrests
+```
+
+```{r}
+arrests <- 
+  USArrests %>% 
+  mutate(State=rownames(USArrests)) %>%  #mutate to make new row name
+  select(State, Murder, Assault, Rape)
+arrests #arrest per 100,000 individuals
+```
+
+
+### Practice: gather()
+1. Are these data tidy? Please use `gather()` to tidy the data.
+> no, observations are grouped in a single row by stae
+
+```{r}
+tidy_arrests <- arrests %>% 
+  gather(Murder, Assault, Rape, key="Crime", value="per100k")
+tidy_arrests
+```
+
+
+2. Restrict the data to assault only. Sort in ascending order.
+> use filter() & arrange()
+
+```{r}
+tidy_arrests %>% 
+  filter(Crime=="Assault") %>% 
+  arrange(desc(per100k))
+```
+
+
+## spread()
+The opposite of `gather()`. You use `spread()` when you have an observation scattered across multiple rows. In the example below, `cases` and `population` represent variable names not observations.
+> long format and short format
+
+```{r}
+country <- c("Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", "Brazil", "Brazil", "Brazil", "Brazil", "China", "China", "China", "China")
+year <- c("1999", "1999", "2000", "2000", "1999", "1999", "2000", "2000", "1999", "1999", "2000", "2000")
+key <- c("cases", "population", "cases", "population", "cases", "population", "cases", "population", "cases", "population", "cases", "population")
+value <- c(745, 19987071, 2666, 20595360, 37737, 172006362, 80488, 174504898, 212258, 1272915272, 213766, 1280428583)
+
+tb_data <- data.frame(country=country, year=year, key=key, value=value)
+tb_data
+```
+> run this data and see that afghanistan listed 4 times; each line it's own thing so essentially key and value col are NOT TIDY; need to spread data out; want cases and population to be its own col
+
+When using `spread()` the `key` is the variable that you are spreading. 
+```{r}
+#spread into wide format
+tb_data %>% 
+  spread(key=key, value=value)
+```
+
+### Practice: spread()
+1. Run the following to build the `gene_exp` data frame.
+```{r}
+id <- c("gene1", "gene1", "gene2", "gene2", "gene3", "gene3")
+type <- c("treatment", "control", "treatment", "control","treatment", "control")
+L4_values <- rnorm(6, mean = 20, sd = 3)
+```
+
+```{r}
+gene_exp <- 
+  data.frame(gene_id=id, type=type, L4_values=L4_values)
+gene_exp
+```
+
+2. Are these data tidy? Please use `spread()` to tidy the data.
+```{r}
+tidy_gene_exp <- gene_exp %>%
+  spread(key = "type", value = "L4_values")
+tidy_gene_exp
+
+#can also do: spread(type, L4_values)
+```
+> we learn this to learn how to make nice plots, which most people learn R for
+
+## summarize()
+summarize() will produce summary statistics for a given variable in a data frame. For example, in homework 2 you were asked to calculate the mean of the sleep total column for large and small mammals. We did this using a combination of tidyverse and base R commands, which isn't very efficient or clean. It also took two steps.
+```{r}
+?msleep
+colnames(msleep)
+```
+
+From homework 2.
+```{r}
+large <- msleep %>% 
+  select(name, genus, bodywt, sleep_total) %>% 
+  filter(bodywt>=200) %>% 
+  arrange(desc(bodywt))
+```
+
+```{r}
+mean(large$sleep_total)
+```
+
+We can accomplish the same task using the `summarize()` function in the tidyverse and make things cleaner.
+> in summarize(), first filter() to take bodywt greater than 200 --> now summarize() to make a new col
+
+```{r}
+msleep %>% 
+  filter(bodywt>=200) %>%
+  summarize(mean_sleep_lg=mean(sleep_total))
+```
+
+You can also combine functions to make useful summaries for multiple variables.
+```{r}
+msleep %>% 
+    filter(bodywt>=200) %>% 
+    summarize(mean_sleep_lg = mean(sleep_total), 
+              min_sleep_lg = min(sleep_total),
+              max_sleep_lg = max(sleep_total),
+              sd_sleep_lg=sd(sleep_total), #std dev
+              total = n())
+```
+>convinient b/c can now get fast clean clear looking summary of variables
+
+There are many other useful summary statistics, depending on your needs: sd(), min(), max(), median(), sum(), n() (returns the length of vector), first() (returns first value in vector), last() (returns last value in vector) and n_distinct() (number of distinct values in vector).
+
+### Practice: summarize()
+1. How many genera are represented in the msleep data frame?
+```{r}
+msleep %>% 
+  summarize(ngenera=n_distinct(genus)) #decide what fxns to summarize; remember, can't count b/c not numerics and use n_distinct() b/c many duplicates
+```
+
+2. What are the min, max, and mean body weight for all of the mammals? Be sure to include the total n.
+```{r}
+msleep %>% 
+    summarize(min_bodywt = min(bodywt),
+              max_bodywt = max(bodywt),
+              mean_bodywt = mean(bodywt), 
+              total = n())
+```
+
+## group_by()
+The `summarize()` function is most useful when used in conjunction with `group_by()`. Although producing a summary of body weight for all of the mammals in the dataset is helpful, what if we were interested in body weight by feeding ecology?
+```{r}
+# counting can be made easier
+msleep %>% 
+  count(vore)
+```
+
+```{r}
+# can group by whatever you want and then do summary statistics
+msleep %>%
+  group_by(vore) %>% #we are grouping by feeding ecology; vore = trophic type(herbivore, carnivore)
+  summarize(min_bodywt=min(bodywt),
+            max_bodywt=max(bodywt),
+            mean_bodywt=mean(bodywt),
+            total=n())
+```
+> Hint: in data sets you don't know well, this is quick easy way to see what data is like; group_by() and summarize() to get an idea of basic stuff!
+
+### Practice: group_by()
+1. Calculate mean brain weight by taxonomic order in the msleep data.
+```{r}
+msleep %>% 
+  group_by(order) %>% 
+  summarize(mean_brainwt=mean(brainwt))
+```
+> notice: for example, if even just one artiodactyla has one NA, then R is gonna thing the whole order has no brainwts
+
+2. What does `NA` mean?
+> 
+
+3. Try running the code again, but this time add `na.rm=TRUE`. What is the problem with Cetacea?
+```{r}
+msleep %>% 
+  group_by(order) %>% 
+  summarize(mean_brainwt=mean(brainwt, na.rm=TRUE)) #remove rows where brainwt = NA
+```
+> Notice: Cetacea has NaN because no brainwt at all for it
+
+```{r}
+msleep %>% 
+  filter(order=="Cetacea")
+```
+> Notice: there is no brainwt for Cetacea, so can't make a mean of nothing
+
+
+
+# Lab 4-2: Dealing with NA's
+
+## Review
+In the last section we practiced wrangling untidy data using `tidyr`. We also learned the `summarize()` function and `group_by()` to produce useful summaries of our data. But, we ended the last session with the discovery of NA's and how they can impact analyses. This is a big issue in data science and we will spend the remainder of this lab learning how to manage data with missing values.  
+
+## Learning Goals
+*At the end of this exercise, you will be able to:*    
+1. Produce summaries of the number of NA's in a data set.  
+2. Replace values with `NA` in a data set as appropriate.  
+
+### Load the tidyverse
+```{r}
+library("tidyverse")
+```
+
+## Dealing with NA's
+In almost all scientific data, there are missing observations. These can be tricky to deal with, partly because you first need to determine how missing values were treated in the original study. Scientists use different conventions in showing missing data; some use blank spaces, others use "-", etc. Worse yet, some scientists indicate **missing data with numerics like -999.0!**  
+> Think: will always encounter NA; different ways to represent (..., -, NA)
+
+### Practice
+1. What are some possible problems if missing data are indicated by "-999.0"?
+> Think again: what's the problem with representing NAs as -999.0? R will think it's a number!
+
+### Load the `msleep` data into a new object
+```{r}
+msleep <- msleep
+```
+
+### Are there any NA's?
+Let's first check to see if our data has any NA's. is.na() is a function that determines whether a value in a data frame is or is not an NA. This is evaluated logically as TRUE or FALSE.
+```{r}
+is.na(msleep)
+```
+
+OK, what are we supposed to do with that? Unless you have a small data frame, applying the is.na function universally is not helpful but we can use the code in another way. Let's incorporate it into the `summarize()` function.
+```{r}
+msleep %>% 
+  summarize(number_nas= sum(is.na(msleep)))
+```
+> keep in mind: may not actually rep # of NA's in df; doesn't tell you where they are either :(
+
+This is better, but we still don't have any idea of where those NA's are in our data frame. If there were a systemic problem in the data it would be hard to determine. In order to do this, we need to apply `is.na` to each variable of interest.
+```{r}
+msleep %>% 
+  summarize(number_nas= sum(is.na(conservation)))
+```
+> so you could do this for every col, but not feasible with larger datasets
+
+What if we are working with hundreds or thousands (or more!) variables?! In order to deal with this problem efficiently we can use another package in the tidyverse called `purrr`.
+```{r}
+msleep_na <- 
+  msleep %>%
+  purrr::map_df(~ sum(is.na(.))) #map to a new data frame the sum results of the is.na function for all columns
+msleep_na
+```
+> what purrr does: take a command and repeat it accross for you (will look for NA's in every col for you)
+> now, we can see where the NA's in sf are! super helpful!
+
+Don't forget that we can use `gather()` to make viewing this output easier.
+```{r}
+msleep %>% 
+  purrr::map_df(~ sum(is.na(.))) %>% 
+  tidyr::gather(key="variables", value="num_nas") %>% 
+  arrange(desc(num_nas))
+```
+> nice clean clear output; every project should have section on NA's
+
+This is much better, but we need to be careful. R can have difficulty interpreting missing data. This is especially true for categorical variables. Always do a reality check if the output doesn't make sense to you. A quick check never hurts.  
+
+You can explore a specific variable more intently using `count()`. This operates similarly to `group_by()`.
+```{r}
+msleep %>% 
+  count(conservation)
+```
+> this is a reality check you can do. confirm that conservation col has 29 NA's (yes it does)
+
+Adding the `sort=TRUE` option automatically makes a descending list.
+```{r}
+msleep %>% 
+  count(conservation, sort=TRUE)
+```
+
+It is true that all of this is redundant, but you want to be able to run multiple checks on the data. Remember, just because your code runs without errors doesn't mean it is doing what you intended.  
+
+>so we found NA's. what do we do with them now?
+
+## Replacing NA's
+Once you have an idea of how NA's are represented in the data, you can replace them with `NA` so that R can better deal with them. The bit of code below is very handy, especially if the data has NA's represented as **actual values that you want replaced** or if you want to make sure any blanks are treated as NA.
+```{r}
+msleep_na2 <- 
+  msleep %>% 
+  na_if("") #replace x data with NA
+msleep_na2
+
+#so if the NA's are -999.0, just do 'na_if("-999.0")'
+```
+
+### Practice: replacing NA's
+1. Did replacing blanks with NA have any effect on the msleep data? Demonstrate this using some code.
+> look above
+
+## Practice and Homework #4
+We will work together on the next part (time permitting) and this will end up being your homework. Make sure that you save your work and copy and paste your responses into the RMarkdown homework file.
+
+Aren't mammals fun? Let's load up some more mammal data. This will be life history data for mammals. The [data](http://esapubs.org/archive/ecol/E084/093/) are from: *S. K. Morgan Ernest. 2003. Life history characteristics of placental non-volant mammals. Ecology 84:3402.*  
+> Note: in our projects, should reference where data is from like this 
+
+See lab4_hw_aptruong in repository for HW
+
+# Wrap-up
+Please review the learning goals and be sure to use the code here as a reference when completing the homework.
+
+See you next time!

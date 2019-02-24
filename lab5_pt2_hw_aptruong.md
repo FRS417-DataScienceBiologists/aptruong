@@ -214,7 +214,7 @@ life_history_replace %>%
 
 ```r
 life_history_replace %>% 
-  ggplot(aes(x=newborn, y=gestation, group=order, fill=order, color=order))+
+  ggplot(aes(x=newborn, y=gestation, size=mass, color=order))+
   scale_x_log10()+
   geom_jitter()+
   labs(title = "Newborn Body Mass vs. Gestation: scaled log10",
@@ -224,7 +224,7 @@ life_history_replace %>%
 ```
 
 ```
-## Warning: Removed 673 rows containing missing values (geom_point).
+## Warning: Removed 691 rows containing missing values (geom_point).
 ```
 
 ![](lab5_pt2_hw_aptruong_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
@@ -260,6 +260,7 @@ life_history_replace %>%
 life_history_replace %>% 
   ggplot(aes(x=order, y=max_life, group=order, fill=order))+ 
   geom_boxplot()+
+  scale_y_log10()+
   labs(title = "Range of Lifespan by Order",
        x = "Order",
        y = "Lifespan (months)")+

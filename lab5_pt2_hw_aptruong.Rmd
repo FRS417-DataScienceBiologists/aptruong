@@ -109,7 +109,7 @@ life_history_replace %>%
 8. Now that you have the basic plot, color the points by taxonomic order.
 ```{r}
 life_history_replace %>% 
-  ggplot(aes(x=newborn, y=gestation, group=order, fill=order, color=order))+
+  ggplot(aes(x=newborn, y=gestation, size=mass, color=order))+
   scale_x_log10()+
   geom_jitter()+
   labs(title = "Newborn Body Mass vs. Gestation: scaled log10",
@@ -137,6 +137,7 @@ life_history_replace %>%
 life_history_replace %>% 
   ggplot(aes(x=order, y=max_life, group=order, fill=order))+ 
   geom_boxplot()+
+  scale_y_log10()+
   labs(title = "Range of Lifespan by Order",
        x = "Order",
        y = "Lifespan (months)")+

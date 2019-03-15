@@ -24,7 +24,7 @@ Aren't mammals fun? Let's load up some more mammal data. This will be life histo
 
 
 ```r
-life_history <- readr::read_csv("C:/Users/Apple/Desktop/FRS417/class_files-master/mammal_lifehistories_v2.csv")
+life_history <- readr::read_csv("C:/Users/Apple/Desktop/aptruong/data/mammal_lifehistories_v2.csv")
 ```
 
 ```
@@ -82,14 +82,14 @@ life_history %>%
 ##  n obs: 1440 
 ##  n variables: 13 
 ## 
-## -- Variable type:character ---
+## -- Variable type:character ---------------------
 ##  variable missing complete    n min max empty n_unique
 ##    family       0     1440 1440   6  15     0       96
 ##     genus       0     1440 1440   3  16     0      618
 ##     order       0     1440 1440   7  14     0       17
 ##   species       0     1440 1440   3  17     0     1191
 ## 
-## -- Variable type:numeric -----
+## -- Variable type:numeric -----------------------
 ##     variable missing complete    n      mean         sd   p0  p25     p50
 ##          AFR       0     1440 1440   -408.12     504.97 -999 -999    2.5 
 ##    gestation       0     1440 1440   -287.25     455.36 -999 -999    1.05

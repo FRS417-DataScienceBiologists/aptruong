@@ -47,7 +47,7 @@ Load the fish scale data
 Here we load a .csv file with data on fish scales. We open the file using `read_csv()`. 
 ```{r message=FALSE, warning=FALSE}
 fish <- 
-  readr::read_csv("C:/Users/Apple/Desktop/FRS417/class_files-master_2_1/Gaeta_etal_CLC_data.csv")
+  readr::read_csv("C:/Users/Apple/Desktop/aptruong/data/Gaeta_etal_CLC_data.csv")
 ```
 
 Review what's actually in the df

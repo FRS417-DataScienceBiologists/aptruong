@@ -6,16 +6,16 @@ April Truong's class notes and HW assignnments
 
 ## Which topics are covered in each lab?
 
-|Lab  | Lesson   | Topics                                                                                                            |    
-|-----|----------|-------------------------------------------------------------------------------------------------------------------|
-|1    | 1-2      | arithmetics, vetors                                                                                               |
-|2    | 1-2      | summary functions, data frames                                                                                    |
-|3    | 2-2      | summary functions, data frames, into to Dplyr                                                                     |
-|4    | 3-1, 3-2 | Dplyr, Tidyr                                                                                                      |
-|5    | 5-1      | Data Visualizations I: intro to ggplots scatterplots, barplots, and boxplots                                      |
-|6    | 5-1      | Data Visualization I (cont.)                                                                                      |
-|7    | 5-2      | Data Visualiation II: aesthetics                                                                                  |
-|8    | 6-1      | Data Visualization III & IV: barplots with mutliple variables, histograms & density plots, faceting, RColorBrewer |
+|Lab  | Lesson    | Topics                                                                                                            |   
+|-----|-----------|-------------------------------------------------------------------------------------------------------------------|
+|1    | 1-2       | arithmetics, vetors                                                                                               |
+|2    | 1-2       | summary functions, data frames                                                                                    |
+|3    | 2-2       | summary functions, data frames, into to Dplyr                                                                     |
+|4    | 3-1, 3-2  | Dplyr, Tidyr                                                                                                      |
+|5    | 5-1       | Data Visualizations I: intro to ggplots scatterplots, barplots, and boxplots                                      |
+|6    | 5-1       | Data Visualization I (cont.)                                                                                      |
+|7    | 5-2       | Data Visualiation II: aesthetics                                                                                  |
+|8    | 6-1       | Data Visualization III & IV: barplots with mutliple variables, histograms & density plots, faceting, RColorBrewer |
 
 **Reorganized on: 03/15/2019 (03:21)**
   * files were all organized into folders by Lab

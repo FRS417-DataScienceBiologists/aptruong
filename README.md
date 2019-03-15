@@ -22,7 +22,8 @@ April Truong's class notes and HW assignnments
   * files were all organized into folders by Lab
   * created "data" folder with all the .csv files referenced in this repository
   * figures are now visible in .md files for HWs and class notes that had ggplot codes
-  * added .html outputs
+  * added .html outputs for HWs and class notes
+  * added an excel spreadsheet 'FRS_R_codes.xlsx' of all the code covered in this course
   * edited the `readr:read_csv` code to fit newly reorganized repository for the following labs: 
     + Lab 3, Lab 4, Lab 5, Lab 6, Lab 7, Lab 8
   * note: no other codes were altered, added, or deleted in this update

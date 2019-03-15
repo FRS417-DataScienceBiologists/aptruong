@@ -143,7 +143,8 @@ Data: http://datadryad.org/resource/doi:10.5061/dryad.q5j65/1
 
 
 ```r
-homerange <- readr::read_csv("C:/Users/Apple/Desktop/FRS417/class_files-master/Tamburelloetal_HomeRangeDatabase.csv")
+homerange <- 
+  readr::read_csv("C:/Users/Apple/Desktop/aptruong/data/Tamburelloetal_HomeRangeDatabase.csv")
 ```
 
 A little bit of cleaning to focus on the variables of interest. Good `dplyr` practice!

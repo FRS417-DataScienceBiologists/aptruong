@@ -44,7 +44,7 @@ Data: http://datadryad.org/resource/doi:10.5061/dryad.q5j65/1
 
 ```r
 homerange <- 
-  readr::read_csv("C:/Users/Apple/Desktop/FRS417/class_files-master/data/Tamburelloetal_HomeRangeDatabase.csv", na = c("", " ", "NA", "#N/A", "-999", "\\"))
+  readr::read_csv("C:/Users/Apple/Desktop/aptruong/data/Tamburelloetal_HomeRangeDatabase.csv", na = c("", " ", "NA", "#N/A", "-999", "\\"))
 ```
 
 ## Barplots revisited

@@ -25,7 +25,7 @@ library(tidyverse)
 2. For these questions, we will use data about California colleges. Load the `ca_college_data.csv` as a new object called `colleges`.
 ```{r}
 colleges <- 
-  readr::read_csv("C:/Users/Apple/Desktop/FRS417/class_files-master/data/ca_college_data.csv")
+  readr::read_csv("C:/Users/Apple/Desktop/aptruong/data/ca_college_data.csv")
 ```
 
 

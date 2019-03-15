@@ -27,11 +27,11 @@ getwd()
 ```
 
 ```
-## [1] "C:/Users/Apple/Desktop/FRS417/HW"
+## [1] "C:/Users/Apple/Desktop/aptruong/Lab 3 (HW & Class Notes)"
 ```
 
 ```r
-fisheries <- readr::read_csv(file = "C:/Users/Apple/Desktop/FRS417/class_files-master_2_1/FAO_1950to2012_111914.csv") 
+fisheries <- readr::read_csv(file = "C:/Users/Apple/Desktop/aptruong/data/FAO_1950to2012_111914.csv") 
 ```
 
 ```

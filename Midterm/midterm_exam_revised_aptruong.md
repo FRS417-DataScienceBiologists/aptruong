@@ -27,7 +27,7 @@ library(tidyverse)
 
 ```r
 colleges <- 
-  readr::read_csv("C:/Users/Apple/Desktop/FRS417/class_files-master/data/ca_college_data.csv")
+  readr::read_csv("C:/Users/Apple/Desktop/aptruong/data/ca_college_data.csv")
 ```
 
 ```
@@ -61,14 +61,14 @@ colleges %>%
 ##  n obs: 341 
 ##  n variables: 10 
 ## 
-## -- Variable type:character -------
+## -- Variable type:character ---------------------
 ##  variable missing complete   n min max empty n_unique
 ##      CITY       0      341 341   4  19     0      161
 ##    INSTNM       0      341 341  10  63     0      341
 ##    STABBR       0      341 341   2   2     0        3
 ##       ZIP       0      341 341   5  10     0      324
 ## 
-## -- Variable type:numeric ---------
+## -- Variable type:numeric -----------------------
 ##       variable missing complete   n     mean        sd        p0      p25
 ##       ADM_RATE     240      101 341     0.59     0.23     0.081      0.46
 ##  C150_4_POOLED     221      120 341     0.57     0.21     0.062      0.43

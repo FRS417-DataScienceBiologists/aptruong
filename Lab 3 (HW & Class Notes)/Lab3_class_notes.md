@@ -17,7 +17,7 @@ getwd()
 ```
 
 ```
-## [1] "C:/Users/Apple/Desktop/FRS417"
+## [1] "C:/Users/Apple/Desktop/aptruong/Lab 3 (HW & Class Notes)"
 ```
 
 Make sure to call/load tidyverse; ignore whatever is outputted
@@ -27,7 +27,7 @@ library("tidyverse")
 ```
 
 ```
-## -- Attaching packages --------------------
+## -- Attaching packages ------- tidyverse 1.2.1 --
 ```
 
 ```
@@ -38,7 +38,7 @@ library("tidyverse")
 ```
 
 ```
-## -- Conflicts ---- tidyverse_conflicts() --
+## -- Conflicts ---------- tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ```
@@ -52,7 +52,7 @@ Begin by pulling up your data
 Check Environment for the data
 
 ```r
-fish <- readr::read_csv("C:/Users/Apple/Desktop/FRS417/class_files-master/Gaeta_etal_CLC_data.csv")
+fish <- readr::read_csv("C:/Users/Apple/Desktop/aptruong/data/Gaeta_etal_CLC_data.csv")
 ```
 
 ```
@@ -213,7 +213,7 @@ glimpse(fish)
 1. Load the data `mammal_lifehistories_v2.csv` and place it into a new object called `mammals`.
 
 ```r
-mammals <- readr::read_csv("C:/Users/Apple/Desktop/FRS417/class_files-master/mammal_lifehistories_v2.csv")
+mammals <- readr::read_csv("C:/Users/Apple/Desktop/aptruong/data/mammal_lifehistories_v2.csv")
 ```
 
 ```

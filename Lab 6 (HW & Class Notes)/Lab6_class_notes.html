@@ -299,7 +299,8 @@ ggplot(data=iris, mapping=aes(x=Species, y=Petal.Length)) #ggplot(data, what you
 <p><strong>Database of vertebrate home range sizes.</strong><br />
 Reference: Tamburello N, Cote IM, Dulvy NK (2015) Energy and the scaling of animal space use. The American Naturalist 186(2):196-211. <a href="http://dx.doi.org/10.1086/682070" class="uri">http://dx.doi.org/10.1086/682070</a>.<br />
 Data: <a href="http://datadryad.org/resource/doi:10.5061/dryad.q5j65/1" class="uri">http://datadryad.org/resource/doi:10.5061/dryad.q5j65/1</a></p>
-<pre class="r"><code>homerange &lt;- readr::read_csv(&quot;C:/Users/Apple/Desktop/FRS417/class_files-master/Tamburelloetal_HomeRangeDatabase.csv&quot;)</code></pre>
+<pre class="r"><code>homerange &lt;- 
+  readr::read_csv(&quot;C:/Users/Apple/Desktop/aptruong/data/Tamburelloetal_HomeRangeDatabase.csv&quot;)</code></pre>
 <p>A little bit of cleaning to focus on the variables of interest. Good <code>dplyr</code> practice!</p>
 <pre class="r"><code>homerange &lt;- 
   homerange %&gt;%  

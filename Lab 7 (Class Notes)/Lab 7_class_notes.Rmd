@@ -33,7 +33,7 @@ library(skimr)
 Let's briefly return to the `homerange` data and filter out carnivorous mammals. We can use a boxplot to visualize the differences in body mass by family.
 ```{r message=FALSE, warning=FALSE}
 homerange <- 
-  readr::read_csv("C:/Users/Apple/Desktop/FRS417/class_files-master/data/Tamburelloetal_HomeRangeDatabase.csv", na = c("", " ", ",","NA","#N/A","-999"))
+  readr::read_csv("C:/Users/Apple/Desktop/aptruong/data/Tamburelloetal_HomeRangeDatabase.csv", na = c("", " ", ",","NA","#N/A","-999"))
 #'na=' fix NA's at the get-go
 ```
 

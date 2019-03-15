@@ -35,7 +35,7 @@ Let's briefly return to the `homerange` data and filter out carnivorous mammals.
 
 ```r
 homerange <- 
-  readr::read_csv("C:/Users/Apple/Desktop/FRS417/class_files-master/data/Tamburelloetal_HomeRangeDatabase.csv", na = c("", " ", ",","NA","#N/A","-999"))
+  readr::read_csv("C:/Users/Apple/Desktop/aptruong/data/Tamburelloetal_HomeRangeDatabase.csv", na = c("", " ", ",","NA","#N/A","-999"))
 #'na=' fix NA's at the get-go
 ```
 
@@ -79,7 +79,7 @@ carni_mammals %>%
   theme(axis.text.x = element_text(angle = 60, hjust=1))
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
 
 ### Practice: Box Plots
@@ -147,7 +147,7 @@ homerange %>%
   geom_boxplot()
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 > Note remember: barplot for plotting count, boxplot for plotting range
 
 
@@ -161,7 +161,7 @@ ggplot(data=homerange, mapping=aes(x=log10.mass, y=log10.hra)) +
   geom_point()
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 > Note: (+) rel b/t how big+
   labs(title = "Mass vs. Homerange",
        x = "Mass (log10)",
@@ -176,7 +176,7 @@ ggplot(data=homerange, mapping=aes(x=log10.mass, y=log10.hra)) +
   geom_point()
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 > Note: all plots need clearly labelled titles & axes
 
 We can improve the plot further by adjusting the size and condition of the text.
@@ -192,7 +192,7 @@ ggplot(data=homerange, mapping=aes(x=log10.mass, y=log10.hra)) +
         axis.title=element_text(size=12))
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 > Note: there are a lot of cool themes, but rn just adjusting size and bold it; all cosmetic & fully adjustable 
 > .text for number labels; .title for label labels
 
@@ -207,7 +207,7 @@ ggplot(data=homerange, mapping=aes(x=log10.mass, y=log10.hra)) +
   theme(plot.title = element_text(size = rel(2), hjust = 0.5))
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
 > Note: rel automatic adjust for youl; hjust was used to center the title (0 = left, 0.5 = middle, 1 = right)
 
 ### Practice: Labels
@@ -242,7 +242,7 @@ ggplot(data=homerange, aes(x=locomotion))+ #note, no y= b/c barplot is for makin
   coord_flip() #just to flip
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
 
 ## Other Aesthetics
@@ -254,7 +254,7 @@ homerange %>%
   geom_point()
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 > Note: this is coloring by locomotion type (basically coloring by another variable)
 
 
@@ -264,7 +264,7 @@ homerange %>%
   geom_point(color = "red")
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
 > Note: this is just recoloring the points. not as informative, but it's something you can do. there are many colors to choose from. 
 
 `size` adjusts the size of points relative to a continuous variable (like mass)
@@ -275,7 +275,7 @@ homerange %>%
   geom_point()
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
 > Analysis: animals w/ biggest mass need more room
 
 Here I am plotting `class` on the x-axis and `log10.mass` on the y-axis. I use `group` to make individual box plots for each taxon. I also use `fill` so I can associate the different taxa with a color coded key.
@@ -286,7 +286,7 @@ homerange %>%
   geom_boxplot()
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
 ```r
 homerange %>% 
@@ -294,7 +294,7 @@ homerange %>%
   geom_boxplot()
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
 > Note: R is pixking colors randomly for you
 
 ### Practice: other aesthetics 
@@ -309,7 +309,7 @@ homerange %>%
   theme(plot.title = element_text(size = rel(1.5), hjust = 0.5))
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
 
 
 2. Make a boxplot that compares thermoregulation type by mog10.mass. group and fill by class. Label the axes and provide a title.
@@ -324,7 +324,7 @@ homerange %>%
   theme(plot.title = element_text(size = rel(1.5), hjust = 0.5))
 ```
 
-![](Lab7_class_notes_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
+![](Lab_7_class_notes_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
 
 
 ## Wrap-up

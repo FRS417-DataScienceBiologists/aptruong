@@ -1,0 +1,248 @@
+---
+title: "Lab 3 (Review of Lab 2-2): Data Frames and filter()"
+author: "April Truong"
+date: "Winter 2019, January 25"
+output: 
+  html_document: 
+    keep_md: yes
+---
+ 
+ 
+## Beginning of Class
+
+Always check directory
+```{r}
+getwd()
+```
+
+Make sure to call/load tidyverse; ignore whatever is outputted
+```{r}
+library("tidyverse")
+```
+
+
+## Reading the fish data
+
+Begin by pulling up your data
+  Copy and past working directory into the read_csv()
+  Separated by /
+Check Environment for the data
+```{r}
+fish <- readr::read_csv("C:/Users/Apple/Desktop/aptruong/data/Gaeta_etal_CLC_data.csv")
+```
+
+
+## Summary Functions
+
+Output column names; remind self what you're working with
+```{r}
+names(fish)
+```
+
+```{r}
+nrow(fish) #the number of rows
+```
+
+```{r}
+ncol(fish) #the number of columns
+```
+
+```{r}
+dim(fish) #total dimensions
+```
+
+```{r}
+colnames(fish) #column names
+```
+
+First 6 
+Beneath each col names is class of data 
+    dbl - numeric
+    chr - character
+    
+```{r}
+head(fish)
+```
+
+`summary()` and `str()` are classic functions used by many R programmers. `glimpse()` is part of the tidyverse.
+
+- Summary (don't confuse with summarize)
+  Give statistics to go along with each col
+```{r}
+summary(fish)
+```
+
+- str
+```{r}
+str(fish)
+```
+
+- Glimpse
+```{r}
+glimpse(fish)
+```
+
+## Practice: Data Frames (from Lab 2-2 Review)
+
+1. Load the data `mammal_lifehistories_v2.csv` and place it into a new object called `mammals`.
+```{r}
+mammals <- readr::read_csv("C:/Users/Apple/Desktop/aptruong/data/mammal_lifehistories_v2.csv")
+
+```
+
+2. Provide the dimensions of the data frame.
+```{r}
+dim(mammals) #total dimensions
+```
+
+3. Display the column names in the data frame. 
+```{r}
+colnames(mammals)
+```
+
+4. Use str() to show the structure of the data frame and its individual columns; compare this to glimpse(). 
+```{r}
+str(mammals)
+```
+
+5. Print out the first few rows of the data using the function head().  
+```{r}
+head(mammals)
+```
+
+
+## Dplyr: filter()
+
+    Interested in smaller subset of the data. In order to extract data from dataframe, use filter()
+
+First thing: keep an idea of colnames
+```{r}
+colnames(fish)
+```
+
+What filters do you want to filter by? 
+If only interested in L fish, use filter to only filter those
+    Note: make sure to use ==, R distinguises b/t the two
+```{r}
+filter(fish, lakeid =="AL")
+```
+Now given new data frame restricted to AL lakes
+
+Let's filter more, by numeric instead of character: pull rows where scale legnth are > or = to 350
+```{r}
+filter(fish, length >= 350 )
+```
+Reminder: not storing this data yet
+
+Combine filters
+```{r}
+filter(fish, length == 350 & lakeid == "AL")
+```
+
+Using AND and OR
+```{r}
+filter(fish, length == 167 & length == 175)
+```
+Think: are there fish with 167 length? 175 length? Well yea, but this is asking for a fish that has BOTH 167 and 175 length. So use OR '|'
+```{r}
+filter(fish, length == 167 | length == 175)
+```
+
+Using '!'to filter for NOT
+```{r}
+filter(fish, !length == 175)
+```
+
+
+## Practice: filter() (from Lab 2-2 Review)
+
+1. Filter the `fish` data to include the samples from lake `DY`.
+```{r}
+filter(fish, lakeid == "DY")
+```
+
+2. Filter the data to include all lakes except AL.
+```{r}
+filter(fish, !lakeid == "AL")
+```
+
+3. Filter the data to include all lakes except AL and DY.
+```{r}
+filter(fish, !lakeid == "AL" & !lakeid == "DY")
+```
+
+4. Filter the data to include all fish with a scale length greater than or equal to 11.
+```{r}
+filter(fish, scalelength >= 11)
+```
+
+5. Filter the data to include fish only from lake AL and with a scalelength greater than or equal to 2 and less than or equal to 4.
+```{r}
+fish%>%
+  select(lakeid, scalelength)%>%
+  filter(lakeid=="AL")%>%
+  filter(scalelength >= 2 & scalelength <= 4)
+```
+
+Another way to do this is to separate by commas (create independent filter operations)
+```{r}
+filter(fish, lakeid =="AL",
+       scalelength >= 2 & scalelength <= 4)
+```
+Note: the '&' restricts it to ONLY scalelengths of 2 and 4
+
+
+## Pipes (%>%)
+  Super helpful b/c makes codes cleaner
+  Think about "flowing data into another command"     
+    #supermariobros
+  Shortcut: ctrl + shift + m
+
+```{r}
+fish %>% #take fish and pipe it to function filter()
+  filter(lakeid == "AL")
+
+```
+
+## Select (select())
+```{r}
+fish %>% 
+  select(lakeid, scalelength)
+```
+Now combine pipe & select()
+```{r}
+fish %>%
+  select(lakeid, scalelength)%>%
+  filter(lakeid=="AL")%>%
+  filter(scalelength >= 2 & scalelength <= 4)
+```
+Helpful for big data!
+
+## How  to store as independent dataframe
+  Assign to new object
+```{r}
+fish_new <- fish %>%
+  select(lakeid, scalelength)%>%
+  filter(lakeid=="AL")%>%
+  filter(scalelength >= 2 & scalelength <= 4)
+```
+
+
+
+## Recap
+
+Should feel comfortable with 
+  - creating .md file
+  - filtering
+  
+Make sure to clean up notes, can post to github so you can have access online (esp if can't have own laptop)
+  
+Can now do HW#2
+
+
+
+
+
+
+
+

@@ -6,12 +6,6 @@ April Truong's class notes and HW assignnments
 
 ## Which topics are covered in each lab?
 
-|   |   |   |   |   |
-|---|---|---|---|---|
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
-
 |Lab  | Lesson   | Topics                                                                                                            |    
 |-----|----------|-------------------------------------------------------------------------------------------------------------------|
 |1    | 1-2      | arithmetics, vetors                                                                                               |
